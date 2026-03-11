@@ -8,4 +8,20 @@ use Illuminate\Database\Eloquent\Model;
 class Registro extends Model
 {
     use HasFactory;
+    protected $fillable = [
+            'user_id',
+            'Nombre',
+            'ApellidoPaterno',
+            'ApellidoMaterno',
+            'Profesion',
+            'Institucion',
+            'UnidadMedica',
+            'EstadoProcedencia',
+            'Pais',
+            'Edad',
+            'Sexo',
+            'Modalidad',
+            'Numero',
+            'GestorCalidad'
+    ];
 }

@@ -16,20 +16,18 @@ use Illuminate\Support\Facades\Route;
 //     return view('welcome');
 // });
 
-Route::get('/', function () {
-    return view('/contenido/index');
-});
 // Route::get('/dashboard', function () {
 //     return view('dashboard');
 // })->middleware(['auth'])->name('dashboard');
 
     //Vista de formularios
-Route::resource('formulario/registro', RegistroController::class);
+Route::resource('/formulario', RegistroController::class);
+Route::post('/formulario/create/fetch', [registroController::class, 'fetch'])->name('registroController.fetch');
 
 Route::post('/formulario/asistencia', [AsistenciaController::class, 'store'])
     ->name('asistencia.store')
     ->middleware('auth');
-Route::get('/registro-asistencia',[AsistenciaController::class,'index'])
+Route::get('/registroasistencia',[AsistenciaController::class,'index'])
     ->middleware('auth');
 
 Route::post('/formulario/encuesta', [EncuestaController::class, 'store'])
@@ -40,7 +38,7 @@ Route::get('/encuesta', function () {
 })->middleware('auth');
 
 
-    //Vistas estáticas
+    //Vistas estáticas => Esta OK
 Route::prefix('content')->group(function () {
     Route::view('/', 'contenido/index');
 

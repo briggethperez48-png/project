@@ -15,7 +15,7 @@ class CreateEncuestasTable extends Migration
     {
         Schema::create('encuestas', function (Blueprint $datoE) {
             $datoE->id();
-            $datoE->unsignedBigInteger('usuario_id');
+            $datoE->unsignedBigInteger('user_id');
             $datoE->string('pregunta1');
             $datoE->string('pregunta2');
             $datoE->string('pregunta3');
