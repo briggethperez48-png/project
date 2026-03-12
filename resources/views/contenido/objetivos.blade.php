@@ -4,11 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <!-- <link rel="stylesheet" href="/evento/resources/css/styleObj.css"> -->
-    <link rel="stylesheet" href="{{ asset('css/styleObj.css') }}?v={{ time() }}">
-
-    <script src="{{ asset('js/main.js') }}?v={{ time() }}"></script>
-    <link rel="stylesheet" href="{{ asset('css/styleInd.css') }}?v={{ time() }}">
+    <link href="{{ asset('css/app.css') }}" rel="stylesheet" />
 
     <link rel="stylesheet" href="path/to/font-awesome/css/font-awesome.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css" 
@@ -19,12 +15,17 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
 
-    <title>Objetivos</title>
+    <style>
+        *{margin: 0;padding: 0;box-sizing: border-box;font-family: 'Roboto', sans-serif;}
+        html, 
+        body{background-color: white;max-width: 100%;overflow-y: scroll;}
+    </style>
 
+    <title>Objetivos</title>
 </head>
 <body>
-        <!-- <my-header class="myHeader"> </my-header>
-        <my-menu class="myMenu"> </my-menu> -->
+        <x-theHead> </x-theHead>
+        <x-theMenu> </x-theMenu>
     <section class="content">
         <div class="header2">
             <h2>
@@ -157,7 +158,6 @@
             });
         </script>
     @endif
-
-    <!-- <my-footer class="myFooter"> </my-footer> -->
+        <x-theFooter></x-theFooter>
 </body>
 </html>
