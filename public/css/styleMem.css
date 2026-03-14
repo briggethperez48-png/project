@@ -1,0 +1,69 @@
+* {
+    padding:0;
+    margin:0;
+    box-sizing: border-box;
+}
+
+body{
+    pointer-events: all !important;
+    cursor: pointer !important;
+    min-height: 100vh;
+    background-size: cover;
+    background-image: url('/evento/storage/img/fondo_gob.png');
+    background-blend-mode: darken;
+    background-image: linear-gradient(to bottom, rgba(157,33,72,0.8) 0%,
+        rgba(157,33,72,1) 100%), 
+    url('/evento/storage/img/fondo_gob.png');
+    color: white;
+    background-repeat: no-repeat;
+    background-position: center;
+    
+    margin-top: 100px;
+}
+.container{
+    max-width: 1000px;
+    margin: 100px auto 0 auto;
+}
+
+.cursos{
+    padding: 50px 0 150px 0;
+}
+.cursos h2{
+    font-size: 35px;
+    font-weight: 600;
+    margin-bottom: 20px;
+    color: #fffae9;
+    display: block; 
+    width: 50%;
+    margin-left: auto;
+    margin-right: auto;
+    text-align: center;
+}
+.swiper{
+    width: 100%;
+}
+.swiper-slide{
+    background-position: center;
+    background-size: cover;
+    width: 250px;
+}
+.swiper-slide img{
+    display:block;
+    width: 100%;
+    box-shadow: 10px 7px 10px rgba(0, 0,0, 0.6);
+    border-radius: 19px;
+    overflow: hidden; 
+}
+@media(max-width:991px){
+    body{
+        min-height: 100vh;
+    }
+    .cursos{
+        padding: 30px;
+    }
+}
+@media(min-width: 1200px){
+    body{
+        margin: 100px 25% 0 10px;
+    }
+}

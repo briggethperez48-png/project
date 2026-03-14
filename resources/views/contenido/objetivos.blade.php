@@ -4,7 +4,11 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <link href="{{ asset('css/app.css') }}" rel="stylesheet" />
+    <link rel="stylesheet" href="path/to/font-awesome/css/font-awesome.min.css">
+
+    <!-- Bootstrap -->
+     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css" 
+     integrity="sha384-xOolHFLEh07PJGoPkLv1IbcEPTNtaed2xpHsD9ESMhqIYd0nLMwNLD69Npy4HI+N" crossorigin="anonymous">
 
     <link rel="stylesheet" href="path/to/font-awesome/css/font-awesome.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css" 
@@ -19,68 +23,71 @@
         *{margin: 0;padding: 0;box-sizing: border-box;font-family: 'Roboto', sans-serif;}
         html, 
         body{background-color: white;max-width: 100%;overflow-y: scroll;}
+        img {
+            margin: 0;
+            padding: 0;
+        }
+        .text{
+            font-size: 22px;
+        }
+        h2{color:#9d2148;font-weight: 700;} h3{color:#b28e5c;font-weight: 600;} h4{color:#9d2148;}
+        a{color: #b28e5c;font-weight: 500;} a:hover{color: #55585a;}
+        button{background-color: #9d2148;} button:hover{background-color: #731734;}
+        p{font-size: 25px;}
     </style>
-
     <title>Objetivos</title>
 </head>
-<body>
-        <x-theHead> </x-theHead>
-        <x-theMenu> </x-theMenu>
-    <section class="content">
-        <div class="header2">
-            <h2>
-                Objetivos
-            </h2>
-        </div>
-        <div class="principal">
-            <h2>
-                Objetivo General
-            </h2>
-            <p>
-                Lorem ipsum dolor sit amet consectetur adipisicing elit. 
-                Ratione cum minima molestias, facilis adipisci temporibus 
-                eius nesciunt porro eaque illo! Perferendis autem maxime 
-                voluptatum nesciunt reiciendis nemo possimus voluptas ipsa.
-            </p>
-        </div>
-        <div class="secundario">
-                <h3>
-                    Objetivos Específicos
-                </h3>
-            <p>
-                1.  Lorem ipsum dolor sit amet consectetur adipisicing elit. 
-                Ratione cum minima molestias, facilis adipisci temporibus 
-                eius nesciunt porro eaque illo! Perferendis autem maxime 
-                voluptatum nesciunt reiciendis nemo possimus voluptas ipsa.
-            </p>
-                <br>
-            <p>
-                2.  Lorem ipsum dolor sit amet consectetur adipisicing elit. 
-                Ratione cum minima molestias, facilis adipisci temporibus 
-                eius nesciunt porro eaque illo! Perferendis autem maxime 
-                voluptatum nesciunt reiciendis nemo possimus voluptas ipsa.
-            </p>
-                <br>
-            <p>
-                3.  Lorem ipsum dolor sit amet consectetur adipisicing elit. 
-                Ratione cum minima molestias, facilis adipisci temporibus 
-                eius nesciunt porro eaque illo! Perferendis autem maxime 
-                voluptatum nesciunt reiciendis nemo possimus voluptas ipsa.
-            </p>
-                <br>
-            <p>
-                4.  Lorem ipsum dolor sit amet consectetur adipisicing elit. 
-                Ratione cum minima molestias, facilis adipisci temporibus 
-                eius nesciunt porro eaque illo! Perferendis autem maxime 
-                voluptatum nesciunt reiciendis nemo possimus voluptas ipsa.
-            </p>
-                <br>
-            <p>
-                5.  Lorem ipsum dolor sit amet consectetur adipisicing elit. 
-                Ratione cum minima molestias, facilis adipisci temporibus 
-                eius nesciunt porro eaque illo! Perferendis autem maxime 
-                voluptatum nesciunt reiciendis nemo possimus voluptas ipsa.
-            </p>
+<body class="mx-auto my-auto text-justify">
+    <section class="mt-5 mb-5 ml-4 mr-4 shadow rounded">
+        <div class="m-4">
+            <div class="text-center">
+                <h2>
+                    Objetivos
+                </h2>
+            </div>
+            <div class="">
+                <h2 class="text-center">
+                    Objetivo General
+                </h2>
+                <p>
+                    Fomentar un diálogo interdisciplinario y global sobre la voluntad anticipada como derecho humano fundamental, promoviendo su implementación efectiva, la sensibilización social y la elaboración de propuestas normativas.
+                </p>
+            </div>
+            <div class="">
+                    <h3 class="text-center">
+                        Objetivos Específicos
+                    </h3>
+                <p>
+                    Lorem ipsum dolor sit amet consectetur adipisicing elit. 
+                    Ratione cum minima molestias, facilis adipisci temporibus 
+                    eius nesciunt porro eaque illo! Perferendis autem maxime 
+                    voluptatum nesciunt reiciendis nemo possimus voluptas ipsa.
+                </p>
+                <p>
+                    2.  Lorem ipsum dolor sit amet consectetur adipisicing elit. 
+                    Ratione cum minima molestias, facilis adipisci temporibus 
+                    eius nesciunt porro eaque illo! Perferendis autem maxime 
+                    voluptatum nesciunt reiciendis nemo possimus voluptas ipsa.
+                </p>
+                <p>
+                    3.  Lorem ipsum dolor sit amet consectetur adipisicing elit. 
+                    Ratione cum minima molestias, facilis adipisci temporibus 
+                    eius nesciunt porro eaque illo! Perferendis autem maxime 
+                    voluptatum nesciunt reiciendis nemo possimus voluptas ipsa.
+                </p>
+                <p>
+                    4.  Lorem ipsum dolor sit amet consectetur adipisicing elit. 
+                    Ratione cum minima molestias, facilis adipisci temporibus 
+                    eius nesciunt porro eaque illo! Perferendis autem maxime 
+                    voluptatum nesciunt reiciendis nemo possimus voluptas ipsa.
+                </p>
+                <p>
+                    5.  Lorem ipsum dolor sit amet consectetur adipisicing elit. 
+                    Ratione cum minima molestias, facilis adipisci temporibus 
+                    eius nesciunt porro eaque illo! Perferendis autem maxime 
+                    voluptatum nesciunt reiciendis nemo possimus voluptas ipsa.
+                </p>
+            </div>
         </div>
     </section>
 
@@ -158,6 +165,5 @@
             });
         </script>
     @endif
-        <x-theFooter></x-theFooter>
 </body>
 </html>

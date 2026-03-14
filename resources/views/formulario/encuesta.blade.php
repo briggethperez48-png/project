@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-    <link href="{{ asset('css/app.css') }}" rel="stylesheet" />
+    <!-- <link href="{{ asset('css/app.css') }}" rel="stylesheet" /> -->
     <link rel="stylesheet" href="{{ asset('css/styleForm.css') }}?v={{ time() }}">
 
     <meta charset="UTF-8">
