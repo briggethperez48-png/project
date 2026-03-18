@@ -19,9 +19,11 @@ class CreateEncuestasTable extends Migration
             $datoE->string('pregunta1');
             $datoE->string('pregunta2');
             $datoE->string('pregunta3');
-            $datoE->text('sugerencias')
+            $datoE->string('pregunta4');
+            $datoE->string('escala')
                 ->nullable();
-            $datoE->string('folio');
+            $datoE->string('folio')
+                ->nullable();
             $datoE->timestamps();
         });
     }
