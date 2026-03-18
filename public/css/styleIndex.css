@@ -11,18 +11,24 @@ html,body{
         button{background-color: #9d2148;} button:hover{background-color: #731734;}
         p{font-size: 20px;}
         span{color:#9d2148;font-weight: 700;}
-.objetivosEsp .objetivo img{
+.objetivosEsp .objetivo img,
+.preguntasFrec .pregunta img{
     width: 30px;
     margin-right: 0.5em;
 }
-.objetivosEsp .objetivo{
+.objetivosEsp .objetivo,
+.preguntasFrec .pregunta{
     margin-left: 0;
     margin-bottom: 15px;
     display: flex;
     align-content: center;
 }
-.objetivosEsp{
+.objetivosEsp,
+.preguntasFrec{
     padding-bottom: 10px;
+}
+.preguntasFrec .pregunta span{
+    color: #b28e5c;
 }
 .bloque{
     background-image: url(/project/storage/imagen/maripositaFondoB.png);

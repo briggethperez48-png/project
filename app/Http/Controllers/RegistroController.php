@@ -70,7 +70,7 @@ class RegistroController extends Controller
             'Sexo' => 'required',
             'Modalidad' => 'required',
             'Numero' => 'required',
-            'GestorCalidad' => 'required',
+            'Eres' => 'required|string',
             'email' => 'required|email',
             'password' => 'nullable',
         ];
@@ -82,7 +82,7 @@ class RegistroController extends Controller
         $datosUsuario = request()->except('_token','email','password');
         
         $presenciales = registro::where('Modalidad','PRESENCIAL')->count();
-        if($datosUsuario['Modalidad'] == 'PRESENCIAL' && $presenciales >= 40){
+        if($datosUsuario['Modalidad'] == 'PRESENCIAL' && $presenciales >= 250){
                 $datosUsuario['Modalidad'] = 'VIRTUAL';
             return redirect()->back()
                 ->with('mensaje','Los cupos presenciales ya se llenaron. Se te registró en modalidad VIRTUAL.')
@@ -97,7 +97,7 @@ class RegistroController extends Controller
 
         //Modalidad
         $presenciales = Registro::where('Modalidad','PRESENCIAL')->count();
-        if($presenciales >= 40){
+        if($presenciales >= 250){
             $datosUsuario['Modalidad'] = 'VIRTUAL';
 
             return redirect()->back()
@@ -138,7 +138,7 @@ class RegistroController extends Controller
                         ->get();
 
         $presenciales = Registro::where('Modalidad','PRESENCIAL')->count();
-        $cuposDisponibles = 40 - $presenciales;
+        $cuposDisponibles = 250 - $presenciales;
 
         return view('formulario.edit', compact(
                                         'emplead1',
@@ -165,7 +165,7 @@ class RegistroController extends Controller
             'Sexo' => 'required',
             'Modalidad' => 'required',
             'Numero' => 'required|integer|digits:10',
-            'GestorCalidad' => 'required|boolean',
+            'Eres' => 'required|string',
             'email' => 'required|email|max:50',
             'password' => 'nullable|min:8|max:15',
         ];

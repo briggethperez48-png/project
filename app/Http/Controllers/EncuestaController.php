@@ -81,6 +81,7 @@ class EncuestaController extends Controller
         ]);
 
         return redirect('content/objetivos')->with([
+            'evaluacion_finalizada' => true, // Nueva bandera para disparar el JS
             'aprobado' => $aprobado,
             'aciertos' => $aciertos,
             'folio' => $folio

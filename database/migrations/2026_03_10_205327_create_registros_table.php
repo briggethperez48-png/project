@@ -30,7 +30,7 @@ class CreateRegistrosTable extends Migration
             $datoR->string('Sexo');
             $datoR->string('Modalidad');
             $datoR->string('Numero');
-            $datoR->boolean('GestorCalidad');
+            $datoR->string('Eres');
             $datoR->string('email')
                 ->unique();
             $datoR->string('password');

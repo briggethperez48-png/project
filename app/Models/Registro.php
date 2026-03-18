@@ -22,6 +22,6 @@ class Registro extends Model
             'Sexo',
             'Modalidad',
             'Numero',
-            'GestorCalidad'
+            'Eres'
     ];
 }

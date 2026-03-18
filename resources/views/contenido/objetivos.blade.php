@@ -102,33 +102,6 @@
     </section>
 
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script> 
-    @if(session('folio'))
-        <script>
-            document.addEventListener("DOMContentLoaded", function() {
-                Swal.fire({
-                    title: "Encuesta completada",
-                    html: "Tu folio es:<br><b>{{ session('folio') }}</b>",
-                    icon: "success",
-                    showCancelButton: true,
-                    confirmButtonText: "Copiar folio",
-                    confirmButtonColor: "#9d2148",
-                    cancelButtonText: "Cerrar",
-                    cancelButtonColor: " #55585a"
-                }).then((result) => {
-                    if (result.isConfirmed) {
-                        navigator.clipboard.writeText("{{ session('folio') }}");
-                        Swal.fire({
-                            title: "Copiado",
-                            text: "El folio fue copiado al portapapeles",
-                            icon: "success",
-                            confirmButtonText: "Aceptar",
-                            confirmButtonColor: "#9d2148"
-                        });
-                    }
-                });
-            });
-        </script>
-    @endif
 
     <!-- Para asistencia -->
     @if(session('asistencia'))
@@ -153,11 +126,11 @@
         </script>
     @endif
 
-    <!-- Para asistencia -->
+    <!-- Para registro -->
     @if(session('mensaje'))
         <script>
             Swal.fire({
-            title: "¡Gracias por tu suscripción!",
+            title: "¡Gracias por tu registro!",
             text: "{{ session('success') }}",
             icon: "success",
             confirmButtonColor: "#9d2148"
@@ -175,3 +148,71 @@
             });
         </script>
     @endif
+
+    <!-- Para Evaluación -->
+<div id="datos-evaluacion" 
+     data-finalizada="{{ session('aprobado') !== null ? 'true' : 'false' }}"
+     data-aprobado="{{ session('aprobado') ? 'true' : 'false' }}"
+     data-aciertos="{{ session('aciertos') ?? 0 }}"
+     data-folio="{{ session('folio') ?? '' }}"
+     data-error="{{ session('error') ?? '' }}"
+     style="display: none;">
+</div>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        
+        const contenedor = document.getElementById('datos-evaluacion');
+        
+        const finalizada = contenedor.getAttribute('data-finalizada') === 'true';
+        const aprobado = contenedor.getAttribute('data-aprobado') === 'true';
+        const aciertos = contenedor.getAttribute('data-aciertos');
+        const folio = contenedor.getAttribute('data-folio');
+        const mensajeError = contenedor.getAttribute('data-error');
+
+        if (mensajeError && mensajeError !== "") {
+            Swal.fire({
+                title: 'Atención',
+                text: mensajeError,
+                icon: 'error',
+                confirmButtonColor: '#3085d6'
+            });
+            return;
+        }
+
+        if (finalizada) {
+            if (aprobado) {
+                // MODAL APROBADO
+                Swal.fire({
+                    title: '¡Felicidades!',
+                    icon: 'success',
+                    html: `
+                        <div class="text-center">
+                            <p class="h5">Has aprobado la evaluación.</p>
+                            <p>Tus aciertos: <strong>${aciertos} / 4</strong></p>
+                            <div style="background-color: #d4edda; color: #155724; padding: 15px; border: 1px solid #c3e6cb; border-radius: 5px; margin-top: 15px;">
+                                <strong>Folio generado:</strong><br>
+                                <span style="font-size: 1.5rem; font-weight: bold;">${folio}</span>
+                            </div>
+                        </div>
+                    `,
+                    confirmButtonColor: '#28a745'
+                });
+            } else {
+                // MODAL NO APROBADO (El que te faltaba)
+                Swal.fire({
+                    title: 'Evaluación no aprobada',
+                    icon: 'warning',
+                    html: `
+                        <div class="text-center">
+                            <p class="h5">Lo sentimos, no has alcanzado el puntaje mínimo.</p>
+                            <p>Obtuviste: <strong>${aciertos} de 4 aciertos</strong></p>
+                        </div>
+                    `,
+                    confirmButtonColor: '#d33',
+                    confirmButtonText: 'Regresar'
+                });
+            }
+        }
+    });
+</script>

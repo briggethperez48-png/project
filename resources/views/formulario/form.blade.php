@@ -1,168 +1,226 @@
 @if(count($errors)>0)
-    <div>
-        <p class="bg-danger rounded text-white-50">¡Responda todos los campos!</p>
+    <div class="alert alert-danger shadow-sm mb-4">
+        <i class="fas fa-exclamation-triangle mr-2"></i> ¡Por favor, responda todos los campos!
     </div>
 @endif
-<section class="content">
-            @if(session('mensaje'))
-            <div class="alert alert-warning">
-                {{ session('mensaje') }}
-            </div>
-            @endif
-            <div>
-                <label for="Nombre">Nombre(es)</label>
-                    <input type="text" name="Nombre"
-                        value="{{isset($emplead1->Nombre)?$emplead1->Nombre:old('Nombre')}}">
-            </div>
-            <div>  
-                <label for="ApellidoPaterno">Apellido Paterno</label>
-                    <input type="text" name="ApellidoPaterno"
-                        value="{{isset($emplead1->ApellidoPaterno)?$emplead1->ApellidoPaterno:old('ApellidoPaterno')}}">
-            </div>
-            <div>    
-                <label for="ApellidoMaterno">Apellido Materno</label>
-                    <input type="text" name="ApellidoMaterno"
-                    value="{{isset($emplead1->ApellidoMaterno)?$emplead1->ApellidoMaterno:old('ApellidoMaterno')}}">
-            </div>
-            <div>
-                <label for="Profesion">Profesión</label>
-                    <input type="text" name="Profesion"
-                        value="{{isset($emplead1->Profesion)?$emplead1->Profesion:old('Profesion')}}">
-            </div>
-                <!-- Procedencia -->
-                <div class="form-group">
-                <label for="Institucion">Institución de procedencia</label>
-                    <select type="text" name="Institucion" id="instiPro" 
-                            class="form-control input-lg dynamic" data-dependent="unidad">
-                            <option value="">Escoja uno</option>
-                                @foreach($institucion_list as $instiPro)
-                                    <option value="{{ $instiPro->idInsti }}"
-                                        {{ old('Institucion', $emplead1->Institucion ?? '') == $instiPro->idInsti ? 'selected' : '' }}>
-                                        {{$instiPro->instiPro}}
-                                    </option>
-                                @endforeach
-                    </select>
-                </div>
-                 
-                <div class="form-group">
-                <label for="UnidadMedica">Unidad médica</label>
-                    <select name="UnidadMedica" id="unidad">
 
-                        <option value="">Escoja uno</option>
-                            @if(isset($unidades_list))
-                            @foreach($unidades_list as $unidad)
+<div id="datos-cupo" 
+     data-disponibles="{{ $cuposDisponibles }}" 
+     style="display: none;">
+</div>
 
-                        <option value="{{ $unidad->unidad }}"
-                            {{ old('UnidadMedica', $emplead1->UnidadMedica ?? '') == $unidad->unidad ? 'selected' : '' }}>
+<section class="content p-3">
+    @if(session('mensaje'))
+        <div class="alert alert-warning shadow-sm">
+            {{ session('mensaje') }}
+        </div>
+    @endif
+
+    <div class="row">
+        <div class="form-group col-md-4">
+            <label for="Nombre" class="font-weight-bold">Nombre(s)</label>
+            <input type="text" name="Nombre" class="form-control" 
+                value="{{isset($emplead1->Nombre)?$emplead1->Nombre:old('Nombre')}}" placeholder="Ej. JUAN">
+        </div>
+
+        <div class="form-group col-md-4">
+            <label for="ApellidoPaterno" class="font-weight-bold">Apellido Paterno</label>
+            <input type="text" name="ApellidoPaterno" class="form-control"
+                value="{{isset($emplead1->ApellidoPaterno)?$emplead1->ApellidoPaterno:old('ApellidoPaterno')}}">
+        </div>
+        <div class="form-group col-md-4">
+            <label for="ApellidoMaterno" class="font-weight-bold">Apellido Materno</label>
+            <input type="text" name="ApellidoMaterno" class="form-control"
+                value="{{isset($emplead1->ApellidoMaterno)?$emplead1->ApellidoMaterno:old('ApellidoMaterno')}}">
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="form-group col-md-6">
+            <label for="Profesion" class="font-weight-bold">Profesión</label>
+            <input type="text" name="Profesion" class="form-control"
+                value="{{isset($emplead1->Profesion)?$emplead1->Profesion:old('Profesion')}}" placeholder="Ej. Médico Cirujano">
+        </div>
+
+        <div class="form-group col-md-6">
+            <label for="Institucion" class="font-weight-bold">Institución de procedencia</label>
+            <select name="Institucion" id="instiPro" class="form-control dynamic" data-dependent="unidad">
+                <option value="">Escoja uno</option>
+                @foreach($institucion_list as $instiPro)
+                    <option value="{{ $instiPro->idInsti }}"
+                        {{ old('Institucion', $emplead1->Institucion ?? '') == $instiPro->idInsti ? 'selected' : '' }}>
+                        {{$instiPro->instiPro}}
+                    </option>
+                @endforeach
+            </select>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="form-group col-md-12">
+            <label for="UnidadMedica" class="font-weight-bold">Unidad médica</label>
+            <select name="UnidadMedica" id="unidad" class="form-control">
+                <option value="">Escoja uno</option>
+                @if(isset($unidades_list))
+                    @foreach($unidades_list as $unidad)
+                        <option value="{{ $unidad->id }}"
+                            {{ old('UnidadMedica', $emplead1->UnidadMedica ?? '') == $unidad->id ? 'selected' : '' }}>
                             {{ $unidad->unidad }}
                         </option>
-                            @endforeach
-                            @endif
-
-                    </select>
-                </div>
-                        
-                <div>
-                    <label for="EstadoProcedencia">Estado</label>   
-                        <select id="EstadoProcedencia" onchange="obtenerPaises()"
-                            name="EstadoProcedencia">
-                            
-                        </select>
-                </div>
-                <div class="btnPais">
-                <label for="slcPais">País</label>
-                        <select id="slcPais" name="Pais">
-
-                        </select>
-                </div>
-
-                <!-- General -->
-                 <div>
-                    <label for="Edad">Edad</label>
-                        <input type="number" name="Edad"
-                        value="{{isset($emplead1->Edad)?$emplead1->Edad:old('Edad')}}">
-                </div>
-                <div>
-                <label for="inputSexo">Sexo:</label>
-                    <input name="Sexo" id="inputSexo" list="sexo" type="text" 
-                        placeholder="Selecciona uno" style="margin: 15px;"
-                        value="{{isset($emplead1->Sexo)?$emplead1->Sexo:old('Sexo')}}">
-                        <datalist id="sexo">
-                            <option value="Hombre">
-                            <option value="Mujer">
-                            <option value="Otro">
-                                Escríbelo
-                        </datalist>
-                </div>
-                <div>
-                    @if($cuposDisponibles > 0)
-                        <p>
-                            Cupos presenciales disponibles: 
-                            <strong>{{ $cuposDisponibles }} / 250</strong>
-                        </p>
-                    @else
-                        <p style="color:red;">
-                            Los cupos presenciales se han agotado.  
-                            Solo quedan inscripciones virtuales.
-                        </p>
-                    @endif
-                </div>
-                <div>
-                    <label for="Modalidad">Modalidad</label>
-                        <select name="Modalidad">
-                            <option value="PRESENCIAL"
-                                {{ old('Modalidad', $emplead1->Modalidad ?? '') == 'PRESENCIAL' ? 'selected' : '' }}>
-                                PRESENCIAL
-                            </option>
-                            <option value="VIRTUAL"
-                                {{ old('Modalidad', $emplead1->Modalidad ?? '') == 'VIRTUAL' ? 'selected' : '' }}>
-                                VIRTUAL
-                            </option>
-
-                        </select>
-                </div>
-                        
-                <div>
-                    <label for="Numero">Número telefónico</label>
-                        <input type="text" name="Numero"
-                            value="{{isset($emplead1->Numero)?$emplead1->Numero:old('Numero')}}">
-                </div>
-                <!-- Verificacion -->
-                <div class="GestorCalidad">
-                    <label for="GestorCalidad">¿Eres gestor de calidad?</label>
-                    <br>
-                        <div>
-                            <p>
-                                Sí. <input type="radio" name="GestorCalidad" value="1"
-                                    {{ old('GestorCalidad', $emplead1->GestorCalidad ?? '') == 1 ? 'checked' : '' }}>
-                            </p>
-                        </div>
-                        <div>
-                            <p>
-                                No. <input type="radio" name="GestorCalidad" value="0"
-                                    {{ old('GestorCalidad', $emplead1->GestorCalidad ?? '') == 0 ? 'checked' : '' }}>
-                            </p>
-                        </div>
-                </div>
-
-                <div>
-                    <label for="email">Correo electrónico</label>
-                        <input type="email" name="email" id="email"
-                            value="{{isset($emplead1->email)?$emplead1->email:''}}">
-                </div>
-                       
-                <div>
-                    <label for="psswd">Contraseña</label>
-                        <input type="password" name="password">
-                </div>
-
-<div class="btn">
-    <div class="submit">
-        <input type="submit" value="{{$modo}}">
+                    @endforeach
+                @endif
+            </select>
+        </div>
     </div>
-    
-    <div class="button">
-        <a href="{{url('/objetivos')}}">Regresar</a>
+
+    <div class="row">
+        <div class="form-group col-md-6">
+            <label for="EstadoProcedencia" class="font-weight-bold">Estado</label>   
+            <select id="EstadoProcedencia" onchange="obtenerPaises()" name="EstadoProcedencia" class="form-control">
+                {{-- Opciones cargadas por JS --}}
+            </select>
+        </div>
+
+        <div class="form-group col-md-6">
+            <label for="slcPais" class="font-weight-bold">País</label>
+            <select id="slcPais" name="Pais" class="form-control">
+                {{-- Opciones cargadas por JS --}}
+            </select>
+        </div>
     </div>
-</div>
+
+    <div class="row">
+        <div class="form-group col-md-3">
+            <label for="Edad" class="font-weight-bold">Edad</label>
+            <input type="number" name="Edad" class="form-control"
+                value="{{isset($emplead1->Edad)?$emplead1->Edad:old('Edad')}}">
+        </div>
+
+        <div class="form-group col-md-4">
+            <label for="inputSexo" class="font-weight-bold">Sexo:</label>
+            <input name="Sexo" id="inputSexo" list="sexo" class="form-control" 
+                placeholder="Selecciona o escribe"
+                value="{{isset($emplead1->Sexo)?$emplead1->Sexo:old('Sexo')}}">
+            <datalist id="sexo">
+                <option value="Hombre">
+                <option value="Mujer">
+                <option value="Otro">
+            </datalist>
+        </div>
+
+        <div class="form-group col-md-5">
+            <label for="Modalidad" class="font-weight-bold">Modalidad</label>
+            <select name="Modalidad" class="form-control">
+                <option value="PRESENCIAL"
+                    {{ old('Modalidad', $emplead1->Modalidad ?? '') == 'PRESENCIAL' ? 'selected' : '' }}>
+                    PRESENCIAL
+                </option>
+                <option value="VIRTUAL"
+                    {{ old('Modalidad', $emplead1->Modalidad ?? '') == 'VIRTUAL' ? 'selected' : '' }}>
+                    VIRTUAL
+                </option>
+            </select>
+            <div class="mt-2">
+                @if($cuposDisponibles > 0)
+                    <small class="text-success font-weight-bold">
+                        Cupos presenciales: {{ $cuposDisponibles }} / 250
+                    </small>
+                @else
+                    <small class="text-danger font-weight-bold">
+                        Cupos agotados. Solo virtual.
+                    </small>
+                @endif
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="form-group col-md-4">
+            <label for="Numero" class="font-weight-bold">Número telefónico</label>
+            <input type="text" name="Numero" class="form-control"
+                value="{{isset($emplead1->Numero)?$emplead1->Numero:old('Numero')}}">
+        </div>
+
+        <div class="form-group col-md-8">
+            <label class="font-weight-bold d-block">Eres:</label>
+            <div class="d-flex mt-2">
+                <select name="Eres" class="form-control">
+                    <option value="">Elije una opción</option>
+                    <option value="GC">GESTOR DE CALIDAD</option>
+                    <option value="MS">MONITOR DE LA SALUD</option>
+                    <option value="PA">PERSONAL DE ADMISIÓN</option>
+                    <option value="PAC">PERSONAL DE ARCHIVO CLÍNICO</option>
+                    <option value="PS">PERSONAL DE SEGURIDAD</option>
+                    <option value="OTRO">OTRO</option>
+                </select>
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="form-group col-md-6">
+            <label for="email" class="font-weight-bold">Correo electrónico</label>
+            <input type="email" name="email" id="email" class="form-control"
+                value="{{isset($emplead1->email)?$emplead1->email:''}}">
+        </div>
+        
+        <div class="form-group col-md-6">
+            <label for="psswd" class="font-weight-bold">Contraseña</label>
+            <input type="password" name="password" class="form-control" placeholder="Mínimo 8 caracteres">
+        </div>
+    </div>
+
+    <hr class="my-4">
+
+    <div class="d-flex justify-content-between align-items-center">
+        <a href="{{url('/objetivos')}}" class="btn btn-outline-secondary px-4">
+            <i class="fas fa-arrow-left mr-2"></i> Regresar
+        </a>
+        <button type="submit" class="btn btn-lg px-5 shadow-sm border-0">
+            {{$modo}} registro
+        </button>
+    </div>
+
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <!-- Si no hay cupo... -->
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        const contenedorCupo = document.getElementById('datos-cupo');
+        const cupos = parseInt(contenedorCupo.getAttribute('data-disponibles'));
+
+        // Si los cupos son 0 o menores, disparamos la alerta
+        if (cupos <= 0) {
+            Swal.fire({
+                title: '<strong>Aviso: Cupos Presenciales Agotados</strong>',
+                icon: 'info',
+                html: `
+                    <div class="text-justify">
+                        <p>Le informamos que el límite de <b>250 asistentes presenciales</b> ha sido alcanzado.</p>
+                        <p>Aún puede realizar su registro para participar de forma <b>Virtual</b> y obtener su constancia siguiendo la transmisión en vivo.</p>
+                    </div>
+                `,
+                showCloseButton: true,
+                focusConfirm: false,
+                confirmButtonText: '<i class="fa fa-thumbs-up"></i> Entendido',
+                confirmButtonColor: '#3085d6',
+                allowOutsideClick: false // Obliga al usuario a leer el aviso
+            });
+
+            // Opcional: Bloquear la opción "Presencial" en el select de modalidad
+            const selectModalidad = document.querySelector('select[name="Modalidad"]');
+            if (selectModalidad) {
+                // Seleccionamos Virtual por defecto
+                selectModalidad.value = "VIRTUAL";
+                
+                // Deshabilitamos la opción presencial para evitar errores
+                Array.from(selectModalidad.options).forEach(option => {
+                    if (option.value === "PRESENCIAL") {
+                        option.disabled = true;
+                        option.text += " (Agotado)";
+                    }
+                });
+            }
+        }
+    });
+</script>
 </section>

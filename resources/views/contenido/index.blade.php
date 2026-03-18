@@ -5,7 +5,7 @@
 
 @section('content')
         <!-- Cuerpo -->
-    <div class=" Global mt-5 mb-5 ml-4 mr-4 shadow rounded">
+    <div class="Global mt-5 mb-5 ml-4 mr-4 shadow rounded">
             <!-- Encabezado -->
         <div class="bloque" id="General">
             <div class="d-flex align-items-center justify-content-center mx-4 mt-1">
