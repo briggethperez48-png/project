@@ -13,7 +13,7 @@ class EncuestaController extends Controller
     
     public function index()
     {
-        //
+        // //
     }
 
     public function create()
@@ -23,7 +23,6 @@ class EncuestaController extends Controller
 
     public function store(Request $request)
     {
-        
         $inscripcion = Registro::where('user_id', Auth::id())->first();
 
         if (!$inscripcion) {
@@ -35,21 +34,57 @@ class EncuestaController extends Controller
 
         if ($yaTerminado) {
             return redirect('content/objetivos')
-                ->with('error','Ya respondiste la encuesta.');
+                ->with('error','Ya respondiste la evaluación.');
         }
 
-        $folio = 'MX-2026-' . strtoupper(Str::random(8));
+        // RESPUESTAS CORRECTAS
+        $correctas = [
+            'pregunta1' => 'A',
+            'pregunta2' => 'C',
+            'pregunta3' => 'B',
+            'pregunta4' => 'B',
+        ];
 
+        $respuestasUsuario = [
+            'pregunta1' => $request->pregunta1,
+            'pregunta2' => $request->pregunta2,
+            'pregunta3' => $request->pregunta3,
+            'pregunta4' => $request->pregunta4,
+        ];
+
+        $aciertos = 0;
+
+        foreach ($correctas as $pregunta => $respuestaCorrecta) {
+            if (isset($respuestasUsuario[$pregunta]) &&
+                $respuestasUsuario[$pregunta] === $respuestaCorrecta) {
+                $aciertos++;
+            }
+        }
+
+        $aprobado = $aciertos >= 3;
+
+        $folio = null;
+
+        if ($aprobado) {
+            $folio = 'MX-2026-' . strtoupper(Str::random(8));
+        }
+
+        // Guardar
         Encuesta::create([
             'user_id' => Auth::id(),
             'pregunta1' => $request->pregunta1,
             'pregunta2' => $request->pregunta2,
             'pregunta3' => $request->pregunta3,
-            'sugerencias' => $request->sugerencias,
+            'pregunta4' => $request->pregunta4,
+            'escala' => $request->escala,
             'folio' => $folio
         ]);
 
-        return redirect('content/objetivos')->with('folio', $folio);
+        return redirect('content/objetivos')->with([
+            'aprobado' => $aprobado,
+            'aciertos' => $aciertos,
+            'folio' => $folio
+        ]);
     }
 
     /**

@@ -13,7 +13,8 @@ class Encuesta extends Model
     'pregunta1',
     'pregunta2',
     'pregunta3',
-    'sugerencias',
+    'pregunta4',
+    'escala',
     'folio'
     ];
 }

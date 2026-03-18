@@ -1,83 +1,98 @@
-<!DOCTYPE html>
-<html lang="es">
-<head>
-    <!-- <link href="{{ asset('css/app.css') }}" rel="stylesheet" /> -->
-    <link rel="stylesheet" href="{{ asset('css/styleForm.css') }}?v={{ time() }}">
-
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
-<body>
-    <section class="content">
+   <section class="content">
         <div class="header2">
             <h2>
-                Encuesta de Satisfacción
+                Evaluación
             </h2>
         </div>
         <div class="text">
             <p>
-                A continuación, le invitamos a participar en nuestra encuesta de satisfacción. 
-                El propósito de esta encuesta es recoger sus impresiones sobre el Seminario Interinstitucional 
-                de Seguridad del Paciente. Valoramos enormemente sus comentarios, ya que nos permitirán optimizar 
-                y enriquecer nuestras futuras actividades.
+                <span>Instrucciones:</span> Seleccione la respuesta correcta en cada caso.
+            </p>
+            <p>
+                <span>Criterio de acreditación:</span> mínimo 3 respuestas correctas de 4 (75%).
             </p>
         </div>
         <form method="POST" action="{{ route('encuesta.store') }}">
             @csrf
             <div>
+                <!-- Respuesta: A -->
             <label for="pregunta1">Pregunta 1</label>
             <p>
-                ¿Cree que los temas abordados en el Seminario Interinstitucional 
-                de Seguridad del Paciente, serán utiles para su desarrollo profesional?
+                Desde la perspectiva de mejora continua, el manejo adecuado de quejas permite:
             </p>
-            <select name="pregunta1" required>
-                <option value="">Elija una opción</option>
-                <option value="Muy util">Muy útil</option>
-                <option value="Util">Útil</option>
-                <option value="Regular">Regular</option>
-                <option value="Malo">Malo</option>
-            </select>
+            
+                <input name="pregunta1" type="radio" value="A"> A) Identificar oportunidades de mejora en los procesos.
+                <input name="pregunta1" type="radio" value="B"> B) Sancionar automáticamente al personal involucrado.
+                <input name="pregunta1" type="radio" value="C"> C) Evitar que las personas usuarias regresen al servicio.
+                <input name="pregunta1" type="radio" value="D"> D) Reducir la carga administrativa sin análisis adicional.
+            
             </div>
 
             <div>
+                <!-- Respuesta: C -->
             <label for="pregunta2">Pregunta 2</label>
             <p>
-                ¿Logró ampliar sus conocimientos en su área de trabajo tras concluir 
-                el Seminario Interinstitucional de Seguridad del Paciente?
+                ¿Cuál es un ejemplo de eliminación de barrera actitudinal en la práctica cotidiana?
             </p>
-            <select name="pregunta2" required>
-                <option value="">Elija una opción</option>
-                <option value="Si">Sí</option>
-                <option value="No">No</option>
-            </select>
+            
+                <input name="pregunta2" type="radio" value="A"> A) Colocar una rampa en la entrada principal.
+                <input name="pregunta2" type="radio" value="B"> B) Proporcionar formatos impresos en letra pequeña únicamente.
+                <input name="pregunta2" type="radio" value="C"> C) Explicar directamente a la persona con discapacidad su 
+                    diagnóstico, estudios y tratamiento, solicitando su opinión y consentimiento, 
+                    y no solo hablar con su acompañante.
+                
+                <input name="pregunta2" type="radio" value="D"> D) Solicitar que la persona usuaria “traiga a alguien que le explique”.
+            
             </div>
 
             <div>
+                <!-- Respuesta: B -->
             <label for="pregunta3">Pregunta 3</label>
             <p>
-                La información y difusión del Seminario interinstitucional
-                de Seguridad del Paciente
+                ¿Cuál es una manifestación temprana de desgaste profesional que requiere intervención preventiva?
             </p>
-            <select name="pregunta3" required>
-                <option value="">Elija una opción</option>
-                <option value="Excelente">Excelente</option>
-                <option value="Bueno">Bueno</option>
-                <option value="Regular">Regular</option>
-            </select>
+            
+                <input name="pregunta3" type="radio" value="A"> A) Aumento de empatía y compromiso.
+                <input name="pregunta3" type="radio" value="B"> B) Irritabilidad constante y respuestas impulsivas ante usuarios.
+                <input name="pregunta3" type="radio" value="C"> C) Mejora en el trabajo en equipo.
+                <input name="pregunta3" type="radio" value="D"> D) Satisfacción laboral sostenida.
+            
             </div>
 
             <div>
-            <label for="sugerencias">Sugerencias</label>
+                <!-- Respuesta: B -->
+            <label for="pregunta4">Pregunta 4</label>
             <p>
-                ¿Que aspectos considera que podrían mejorarse para 
-                nuestros próximos eventos?
+                ¿Cuál de las siguientes acciones representa trato diferenciado SIN constituir discriminación?
             </p>
-            <textarea name="sugerencias"></textarea>
+            
+                <input name="pregunta4" type="radio" value="A"> A) Negar la atención a una persona por su identidad de género.
+                <input name="pregunta4" type="radio" value="B"> B) Priorizar la atención de una urgencia médica con base en criterios clínicos.
+                <input name="pregunta4" type="radio" value="C"> C) Retrasar la consulta de una persona con discapacidad por falta de tiempo.
+                <input name="pregunta4" type="radio" value="D"> D) Brindar información incompleta a personas adultas mayores para “evitar confusión”.
+            
+            </div>
+
+            <div>
+            <label for="escala">Nivel de Satisfacción</label>
+            <p>
+                <span>En una escala del 1 al 10, ¿qué tanto recomendaría nuestros eventos a un familiar, 
+                amigo, colega o institución para su desarrollo en el marco de la calidad?</span>
+                <br>
+                <span>
+                    Donde:
+                    1 = No lo recomendaría
+                    10 = Lo recomendaría ampliamente
+                </span>
+            </p>
+            <P>
+                0 <input type="range" id="escala" 
+                    name="escala" min="0" max="10" 
+                    step="0.5" value="0"> 
+                10
+            </P>
             </div>
 
             <button type="submit">Enviar</button>
         </form>
     </section>
-</body>
-</html>
