@@ -1,0 +1,42 @@
+html,body{
+            padding-top:40px;
+            scroll-behavior: smooth;
+            padding-bottom: 20px;
+        }
+        .text{
+            font-size: 22px;
+        }
+        h1{color:#9d2148;} h2{color:#b28e5c;} h3{color:#55585a;} h4{color:#9d2148;}
+        a{color: #b28e5c;font-weight: 500;} a:hover{color: #55585a;}
+        button{background-color: #9d2148;} button:hover{background-color: #731734;}
+        p{font-size: 20px;}
+        span{color:#9d2148;font-weight: 700;}
+.objetivosEsp .objetivo img{
+    width: 30px;
+    margin-right: 0.5em;
+}
+.objetivosEsp .objetivo{
+    margin-left: 0;
+    margin-bottom: 15px;
+    display: flex;
+    align-content: center;
+}
+.objetivosEsp{
+    padding-bottom: 10px;
+}
+.bloque{
+    background-image: url(/project/storage/imagen/maripositaFondoB.png);
+    background-size: cover;          
+    background-position: center;     
+    background-repeat: no-repeat;
+}
+.leyenda{
+    text-shadow: 0 0 2px rgba(255, 255, 255, 0.3);
+}
+.titles{
+    text-shadow: 0 0 5px rgba(0,0,0, 0.3);
+}
+.ul{
+    justify-items: left;
+    list-style-type:none;
+}

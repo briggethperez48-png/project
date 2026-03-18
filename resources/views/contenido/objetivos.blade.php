@@ -1,92 +1,102 @@
-<!DOCTYPE html>
-<html lang="es">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+@extends('layouts.appA')
 
-    <link rel="stylesheet" href="path/to/font-awesome/css/font-awesome.min.css">
+@section('title', 'Objetivos')
 
-    <!-- Bootstrap -->
-     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css" 
-     integrity="sha384-xOolHFLEh07PJGoPkLv1IbcEPTNtaed2xpHsD9ESMhqIYd0nLMwNLD69Npy4HI+N" crossorigin="anonymous">
-
-    <link rel="stylesheet" href="path/to/font-awesome/css/font-awesome.min.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css" 
-        integrity="sha512-2SwdPD6INVrV/lHTZbO2nodKhrnDdJK9/kg2XD1r9uGqPo1cUbujc+IYdlYdEErWNu69gVcYgdxlmVmzTWnetw==" 
-        crossorigin="anonymous" referrerpolicy="no-referrer" 
-    />
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
-
-    <style>
-        *{margin: 0;padding: 0;box-sizing: border-box;font-family: 'Roboto', sans-serif;}
-        html, 
-        body{background-color: white;max-width: 100%;overflow-y: scroll;}
-        img {
-            margin: 0;
-            padding: 0;
-        }
-        .text{
-            font-size: 22px;
-        }
-        h2{color:#9d2148;font-weight: 700;} h3{color:#b28e5c;font-weight: 600;} h4{color:#9d2148;}
-        a{color: #b28e5c;font-weight: 500;} a:hover{color: #55585a;}
-        button{background-color: #9d2148;} button:hover{background-color: #731734;}
-        p{font-size: 25px;}
-    </style>
-    <title>Objetivos</title>
-</head>
-<body class="mx-auto my-auto text-justify">
-    <section class="mt-5 mb-5 ml-4 mr-4 shadow rounded">
+@section('content')
+    <section class="mt-5 mb-5 ml-4 mr-4 shadow rounded text-justify">
         <div class="m-4">
             <div class="text-center">
-                <h2>
+                <h1>
                     Objetivos
-                </h2>
+                </h1>
             </div>
             <div class="">
                 <h2 class="text-center">
                     Objetivo General
                 </h2>
                 <p>
-                    Fomentar un diálogo interdisciplinario y global sobre la voluntad anticipada como derecho humano fundamental, promoviendo su implementación efectiva, la sensibilización social y la elaboración de propuestas normativas.
+                    Fomentar un diálogo interdisciplinario y global sobre la voluntad anticipada 
+                    como derecho humano fundamental, promoviendo su implementación efectiva, la 
+                    sensibilización social y la elaboración de propuestas normativas.
                 </p>
             </div>
-            <div class="">
-                    <h3 class="text-center">
+            <div class="objetivosEsp">
+                <ul>
+                    <h2 class="text-center">
                         Objetivos Específicos
-                    </h3>
-                <p>
-                    Lorem ipsum dolor sit amet consectetur adipisicing elit. 
-                    Ratione cum minima molestias, facilis adipisci temporibus 
-                    eius nesciunt porro eaque illo! Perferendis autem maxime 
-                    voluptatum nesciunt reiciendis nemo possimus voluptas ipsa.
-                </p>
-                <p>
-                    2.  Lorem ipsum dolor sit amet consectetur adipisicing elit. 
-                    Ratione cum minima molestias, facilis adipisci temporibus 
-                    eius nesciunt porro eaque illo! Perferendis autem maxime 
-                    voluptatum nesciunt reiciendis nemo possimus voluptas ipsa.
-                </p>
-                <p>
-                    3.  Lorem ipsum dolor sit amet consectetur adipisicing elit. 
-                    Ratione cum minima molestias, facilis adipisci temporibus 
-                    eius nesciunt porro eaque illo! Perferendis autem maxime 
-                    voluptatum nesciunt reiciendis nemo possimus voluptas ipsa.
-                </p>
-                <p>
-                    4.  Lorem ipsum dolor sit amet consectetur adipisicing elit. 
-                    Ratione cum minima molestias, facilis adipisci temporibus 
-                    eius nesciunt porro eaque illo! Perferendis autem maxime 
-                    voluptatum nesciunt reiciendis nemo possimus voluptas ipsa.
-                </p>
-                <p>
-                    5.  Lorem ipsum dolor sit amet consectetur adipisicing elit. 
-                    Ratione cum minima molestias, facilis adipisci temporibus 
-                    eius nesciunt porro eaque illo! Perferendis autem maxime 
-                    voluptatum nesciunt reiciendis nemo possimus voluptas ipsa.
-                </p>
+                    </h2>
+                    <div class="objetivo">
+                        <div>
+                            <img src="/project/storage/imagen/monarcaA.png" alt="">
+                        </div>
+                        <div>
+                            Promover el intercambio internacional de mejores prácticas: 
+                            Reunir a expertos nacionales e internacionales en bioética, derecho, 
+                            medicina y ciencias sociales para analizar y adaptar modelos 
+                            exitosos de voluntad anticipada al contexto mexicano, 
+                            con énfasis en la experiencia pionera de la Ciudad de México.
+                        </div>
+                    </div>
+                    <div class="objetivo">
+                        <div>
+                            <img src="/project/storage/imagen/monarcaB.png" alt="">
+                        </div>
+                        <div>
+                            Fortalecer la capacitación profesional al desarrollar competencias 
+                            en profesionales de la salud, juristas y académicos para la aplicación 
+                            ética y legal de la voluntad anticipada, mediante conferencias y mesas 
+                            de trabajo que aborden desde la redacción de documentos hasta el 
+                            acompañamiento en el proceso de una voluntad anticipada.
+                        </div>
+                    </div>
+                    <div class="objetivo">
+                        <div>
+                            <img src="/project/storage/imagen/monarcaC.png" alt="">
+                        </div>
+                        <div>
+                            Sensibilizar a la sociedad, aprovechando la relevancia 
+                            del mes de marzo como mes de la voluntad anticipada para 
+                            generar actividades que informen a la población sobre su derecho 
+                            a decidir con autonomía sobre el final de la vida, desmitificando 
+                            tabúes culturales.
+                        </div>
+                    </div>
+                    <div class="objetivo">
+                        <div>
+                            <img src="/project/storage/imagen/monarcaD.png" alt="">
+                        </div>
+                        <div>
+                            Generar propuestas normativas y operativas, para poder elaborar 
+                            recomendaciones para perfeccionar la figura de la Voluntad Anticipada 
+                            en la Ciudad de México y su implementación a nivel nacional, incluyendo 
+                            protocolos para instituciones de salud y sistemas de registro accesibles.
+                        </div>
+                    </div>
+                    <div class="objetivo">
+                        <div>
+                            <img src="/project/storage/imagen/monarcaE.png" alt="">
+                        </div>
+                        <div>
+                            Consolidar redes de colaboración interdisciplinaria: Establecer alianzas entre 
+                            la Secretaría de Salud Pública, la Universidad Nacional Autónoma de México 
+                            y la Academia Nacional de Medicina, Instituciones Internacionales y 
+                            organizaciones de la sociedad civil para impulsar proyectos de investigación, 
+                            educación y políticas públicas en torno a la muerte digna.
+                        </div>
+                    </div>
+                    <div class="objetivo">
+                        <div>
+                            <img src="/project/storage/imagen/monarcaF.png" alt="">
+                        </div>
+                        <div>
+                            Posicionar a México como líder en el diálogo global al consolidar a la 
+                            Ciudad de México, al Instituto de Investigaciones Jurídicas de la UNAM y a 
+                            la Academia Nacional de Medicina como referentes en el estudio y promoción 
+                            de la voluntad anticipada, destacando su marco jurídico y su enfoque 
+                            humanista en el contexto latinoamericano.
+                        </div>
+                    </div>
+               </ul>
             </div>
         </div>
     </section>
@@ -165,5 +175,3 @@
             });
         </script>
     @endif
-</body>
-</html>

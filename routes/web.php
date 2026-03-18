@@ -18,11 +18,24 @@ use Illuminate\Support\Facades\Route;
 
 // Route::get('/dashboard', function () {
 //     return view('dashboard');
-// })->middleware(['auth'])->name('dashboard');
+//  })->name('dashboard');
+  //->middleware(['auth'])->name('dashboard');
 
     //Vista de formularios
-Route::resource('/formulario', RegistroController::class);
-Route::post('/formulario/create/fetch', [registroController::class, 'fetch'])->name('registroController.fetch');
+// Route::resource('/formulario', RegistroController::class);
+// Route::post('/formulario/create/fetch', [registroController::class, 'fetch'])->name('registroController.fetch');
+
+Route::get('/formulario/create', [RegistroController::class, 'create']);
+Route::post('/formulario', [RegistroController::class, 'store']);
+Route::post('/formulario/create/fetch', [RegistroController::class, 'fetch'])->name('registroController.fetch');
+
+// RUTAS PROTEGIDAS
+Route::middleware('auth')->group(function () {
+    Route::get('/formulario', [RegistroController::class, 'index']);
+    Route::get('/formulario/{id}/edit', [RegistroController::class, 'edit']);
+    Route::put('/formulario/{id}', [RegistroController::class, 'update']);
+    Route::delete('/formulario/{id}', [RegistroController::class, 'destroy']);
+});
 
 Route::post('/formulario/asistencia', [AsistenciaController::class, 'store'])
     ->name('asistencia.store')
@@ -33,7 +46,7 @@ Route::get('/registroasistencia',[AsistenciaController::class,'index'])
 Route::post('/formulario/encuesta', [EncuestaController::class, 'store'])
     ->name('encuesta.store')
     ->middleware('auth');
-Route::get('/encuesta', function () {
+Route::get('/evaluacion', function () {
     return view('formulario.encuesta');
 })->middleware('auth');
 
@@ -43,11 +56,13 @@ Route::prefix('content')->group(function () {
     Route::view('/', 'contenido/index');
 
     Route::view('/contactos', 'contenido/contactos');
-    Route::view('/memorias', 'contenido/memorias');
     Route::view('/objetivos', 'contenido/objetivos');
-    Route::view('/ponentes', 'contenido/ponentes');
+    Route::view('/instituciones', 'contenido/instituciones');
+    Route::view('/leyenda', 'contenido/leyenda');
     Route::view('/preguntas', 'contenido/preguntas');
     Route::view('/programa', 'contenido/programa');
+    Route::view('/avisoprivacidad', 'contenido/aviso');
+    Route::view('/terminosycondiciones', 'contenido/terminos');
 
     Route::view('/read', 'contenido/read')->middleware('auth');
 });

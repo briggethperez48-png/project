@@ -1,24 +1,62 @@
-<!DOCTYPE html>
-<html lang="es">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-    <!-- <link href="{{ asset('css/app.css') }}" rel="stylesheet" /> -->
-     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
-
-    <title>Document</title>
-</head>
-<body>
 <!-- Header -->
+<section class="all">
     <section class="header">
-            <a class="logo" href="https://salud.cdmx.gob.mx/" target="_blank" rel="no-referrer">
-        <img src="/Base/imagen/SEDESAV.png" alt="">
+        <div class="logo">
+            <a href="https://salud.cdmx.gob.mx/" target="_blank" rel="no-referrer">
+                <img src="/project/storage/imagen/SEDESAB.png" alt="">
             </a>
-        <header class="">
-            ...Soy un encabezado...
-        </header>
+        </div>
+        <div class="titles">
+            <h1>Congreso Institucional e Interinstitucional</h1>
+            <h2>TRASCENDER EN PAZ</h2>
+        </div>
+        <div>
+            <button class="buttonW">
+                <img src="/project/storage/imagen/butterfly-icon.png" alt="" class="butterfly">
+            </button>
+        </div>
+
     </section>
-    {{$slot}}
-</body>
-</html>
+    <section class="menu">
+        <div>
+            <nav class="nav">
+                <ul>
+                    <li class="li">
+                        <a href="{{url('/content/')}}" class="a">Inicio</a>
+                    </li>
+                    <li class="li">
+                        <a href="{{url('/content/objetivos')}}" class="a">Objetivos</a>
+                    </li>
+                    <li class="li">
+                        <a href="{{url('/content/instituciones')}}" class="a">Instituciones</a>
+                    </li>
+                    <li class="li">
+                        <a href="{{url('/content/leyenda')}}" class="a">Monarcas</a>
+                    </li>
+                    <li class="li">
+                        <a href="{{url('/formulario/create')}}" class="a">Registro</a>
+                    </li>
+                    <li class="li">
+                        <a href="{{url('/registroasistencia')}}" class="a">Asistencia</a>
+                    </li>
+                    <li class="li">
+                        <a href="{{url('/evaluacion')}}" class="a">Evaluación</a>
+                    </li>
+                    <li class="li">
+                        <a href="{{url('/content/programa')}}" class="a">Programa</a>
+                    </li>
+                    <li class="li">
+                        <a href="{{url('/content/preguntas')}}" class="a">Preguntas</a>
+                    </li>
+                    <li class="li">
+                        <a href="{{url('/content/contactos')}}" class="a">Contactos</a>
+                    </li>
+                    <li class="li">
+                        <a href="{{url('/content/terminosycondiciones')}}" class="a">Términos</a>
+                    </li>
+                </ul>
+            </nav>
+        </div>
+    </section>
+</section>
+

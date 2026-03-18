@@ -1,0 +1,1 @@
+Aqui va el aviso de privacidad

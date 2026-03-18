@@ -1,14 +1,9 @@
-
-                @if(count($errors)>0)
-                <div>
-                    <ul>
-                        @foreach($errors->all() as $error)
-                            <li>{{$error}}</li>
-                        @endforeach
-                    </ul>
-                </div>
-            @endif
-
+@if(count($errors)>0)
+    <div>
+        <p class="bg-danger rounded text-white-50">¡Responda todos los campos!</p>
+    </div>
+@endif
+<section class="content">
             @if(session('mensaje'))
             <div class="alert alert-warning">
                 {{ session('mensaje') }}
@@ -103,7 +98,7 @@
                     @if($cuposDisponibles > 0)
                         <p>
                             Cupos presenciales disponibles: 
-                            <strong>{{ $cuposDisponibles }} / 40</strong>
+                            <strong>{{ $cuposDisponibles }} / 250</strong>
                         </p>
                     @else
                         <p style="color:red;">
@@ -161,12 +156,13 @@
                         <input type="password" name="password">
                 </div>
 
-                <div class="btn">
-                    <div class="submit">
-                        <input type="submit" value="{{$modo}}">
-                    </div>
-
-                    <div class="button">
-                        <a href="{{url('/objetivos')}}">Regresar</a>
-                    </div>
-                </div>
+<div class="btn">
+    <div class="submit">
+        <input type="submit" value="{{$modo}}">
+    </div>
+    
+    <div class="button">
+        <a href="{{url('/objetivos')}}">Regresar</a>
+    </div>
+</div>
+</section>

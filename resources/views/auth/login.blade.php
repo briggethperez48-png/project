@@ -1,3 +1,4 @@
+<x-guest-layout>
 <div class="container">
     <div class="row justify-content-center align-items-center" style="min-height: 100vh;">
         <div class="col-md-5">
@@ -68,3 +69,4 @@
         </div>
     </div>
 </div>
+</x-guest-layout>
