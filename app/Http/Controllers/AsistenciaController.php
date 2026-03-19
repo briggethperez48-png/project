@@ -18,7 +18,7 @@ class AsistenciaController extends Controller
     {
         $inicioEvento = \Carbon\Carbon::parse('2026-03-11');
         $diaActual = $inicioEvento->diffInDays(now()) + 1;
-        $diasEvento = 5;
+        $diasEvento = 3;
 
         if($diaActual < 1) $diaActual = 1;
         if($diaActual > $diasEvento) $diaActual = $diasEvento;

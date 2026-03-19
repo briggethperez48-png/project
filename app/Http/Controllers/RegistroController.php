@@ -8,6 +8,7 @@ use App\Models\User;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Http;
 
 class RegistroController extends Controller
 {
@@ -57,22 +58,44 @@ class RegistroController extends Controller
 
         //Almacena, valida y altera los datos.
     public function store(Request $request) {
-        $campos=[
-            'Nombre' => 'required|string|max:30',
-            'ApellidoPaterno' => 'required|string|max:30',
-            'ApellidoMaterno' => 'required|string|max:30',
-            'Profesion' => 'required|string|max:75',
-            'Institucion' => 'required|string',
-            'UnidadMedica' => 'required|string',
-            'EstadoProcedencia' => 'required|string|max:75',
-            'Pais' => 'required|string|max:75',
-            'Edad' => 'required',
+        $alcaldiasValidas = [
+        "ÁLVARO OBREGÓN", "AZCAPOTZALCO", "BENITO JUÁREZ", "COYOACÁN", 
+        "CUAJIMALPA DE MORELOS", "CUAUHTÉMOC", "GUSTAVO A. MADERO", 
+        "IZTACALCO", "IZTAPALAPA", "MAGDALENA CONTRERAS", "MIGUEL HIDALGO", 
+        "MILPA Alta", "TLÁHUAC", "TLALPAN", "VENUSTIANO CARRANZA", "XOCHIMILCO"
+        ];
+
+        $campos = [
+            'Nombre' => 'required|string|max:100|regex:/^[a-zA-Z0-9ñÑ\s]+$/u',
+            'ApellidoPaterno' => 'required|string|max:100|regex:/^[a-zA-Z0-9ñÑ\s]+$/u',
+            'ApellidoMaterno' => 'required|string|max:100|regex:/^[a-zA-Z0-9ñÑ\s]+$/u',
+            'Profesion' => 'required|string|max:150|regex:/^[a-zA-Z0-9ñÑ\s]+$/u',
+            'Institucion' => 'required',
+            'UnidadMedica' => 'required',
+            'EstadoProcedencia' => 'required',
+            'Pais' => 'required',
+            'Alcaldia' => [
+                'required',
+                function ($attribute, $value, $fail) use ($request, $alcaldiasValidas) {
+                    $estado = $request->input('EstadoProcedencia');
+                    $val = strtoupper($value);
+                    if ($estado === 'Ciudad de México') {
+                        if ($val === 'NO APLICA' || empty($val)) {
+                            $fail('Para CDMX debe seleccionar una alcaldía.');
+                        }
+                        if (!in_array($val, $alcaldiasValidas)) {
+                            $fail('La alcaldía seleccionada no es válida.');
+                        }
+                    }
+                },
+            ],
+            'Edad' => 'required|numeric',
             'Sexo' => 'required',
             'Modalidad' => 'required',
-            'Numero' => 'required',
-            'Eres' => 'required|string',
-            'email' => 'required|email',
-            'password' => 'nullable',
+            'Numero' => 'required|max:20', 
+            'Eres' => 'required',
+            'email' => 'required|email|unique:users,email', // Evita correos duplicados
+            'password' => 'required|min:8',
         ];
         $mensaje=[
             'required'=>'El campo ":attribute" es requerido.'

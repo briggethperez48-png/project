@@ -26,6 +26,7 @@ class CreateRegistrosTable extends Migration
             $datoR->string('UnidadMedica');
             $datoR->string('EstadoProcedencia');
             $datoR->string('Pais');
+            $datoR->string('Alcaldia');
             $datoR->integer('Edad');
             $datoR->string('Sexo');
             $datoR->string('Modalidad');

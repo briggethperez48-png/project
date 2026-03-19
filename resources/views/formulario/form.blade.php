@@ -1,6 +1,6 @@
 @if(count($errors)>0)
     <div class="alert alert-danger shadow-sm mb-4">
-        <i class="fas fa-exclamation-triangle mr-2"></i> ¡Por favor, responda todos los campos!
+        <i class="fas fa-exclamation-triangle mr-2"></i> ¡Por favor, llene los campos correctamente!
     </div>
 @endif
 
@@ -8,6 +8,15 @@
      data-disponibles="{{ $cuposDisponibles }}" 
      style="display: none;">
 </div>
+
+    <div class="pregunta alert-info p-3 text-justify">
+        <div>
+            <div><b>INSTRUCCIONES:</b></div>
+            Para efectuar un registro exitoso, sea tan amable de verificar que sus datos 
+            se encuentren en <b>mayúsculas, sin acentos y que todos los campos solicitados sean 
+            contestados</b>.
+        </div>
+    </div>
 
 <section class="content p-3">
     @if(session('mensaje'))
@@ -73,20 +82,27 @@
         </div>
     </div>
 
-    <div class="row">
-        <div class="form-group col-md-6">
-            <label for="EstadoProcedencia" class="font-weight-bold">Estado</label>   
-            <select id="EstadoProcedencia" onchange="obtenerPaises()" name="EstadoProcedencia" class="form-control">
-                {{-- Opciones cargadas por JS --}}
-            </select>
-        </div>
+    <div class="row justify-content-center">
+            <div class="form-group col-md-4">
+                <label class="font-weight-bold">Estado</label>
+                <select id="EstadoProcedencia" name="EstadoProcedencia" class="form-control">
+                    {{-- Se llena por JS --}}
+                </select>
+            </div>
 
-        <div class="form-group col-md-6">
-            <label for="slcPais" class="font-weight-bold">País</label>
-            <select id="slcPais" name="Pais" class="form-control">
-                {{-- Opciones cargadas por JS --}}
-            </select>
-        </div>
+            <div class="form-group col-md-4">
+                <label class="font-weight-bold">País</label>
+                <select id="slcPais" name="Pais" class="form-control">
+                    {{-- Se llena por JS --}}
+                </select>
+            </div>
+
+            <div class="form-group col-md-4">
+                <label class="font-weight-bold">Alcaldía</label>
+                <select id="slcAlcaldia" name="Alcaldia" class="form-control">
+                    <option value="N/A">Seleccione uno</option>
+                </select>
+            </div>
     </div>
 
     <div class="row">
@@ -172,6 +188,24 @@
 
     <hr class="my-4">
 
+    <div class="pregunta alert-warning p-3">
+        <h3>AVISO IMPORTANTE: </h3>
+        <div>
+            <span>Para los participantes que tomarán el evento en modalidad virtual, 
+                la liga se le enviara al correo que registraron.</span>
+            <br>Verifique que el correo que ingreso, pertenezca a su cuenta ligada en Zoom, 
+            de lo contrario la plataforma le arrojará la siguiente leyenda: 
+            <b><i><u>
+                “Esta reunión solo 
+                es para personas registradas autorizadas. Introduzca otra dirección de correo 
+                electrónico”.
+            </u></i></b> 
+            <br><b>Lo cual indica que no cuenta con una cuenta Zoom. Favor de generarla.</b> 
+        </div>
+    </div>
+
+    <hr class="my-4">
+
     <div class="d-flex justify-content-between align-items-center">
         <a href="{{url('/objetivos')}}" class="btn btn-outline-secondary px-4">
             <i class="fas fa-arrow-left mr-2"></i> Regresar
@@ -222,5 +256,135 @@
             }
         }
     });
+
 </script>
 </section>
+
+<script>
+    
+    const estadoGuardado = "{{ old('EstadoProcedencia', $emplead1->EstadoProcedencia ?? '') }}";
+    const paisGuardado = "{{ old('Pais', $emplead1->Pais ?? '') }}"; 
+    const alcaldiaGuardada = "{{ old('Alcaldia', $emplead1->Alcaldia ?? 'N/A') }}";
+
+    
+    const estadosLista = [
+        "Seleccione uno...", "Aguascalientes", "Baja California", "Baja California Sur", "Campeche", "Chiapas",
+        "Chihuahua", "Ciudad de México", "Coahuila", "Colima", "Durango", "Estado de México", "Guanajuato",
+        "Guerrero", "Hidalgo", "Jalisco", "Michoacán", "Morelos", "Nayarit", "Nuevo León", "Oaxaca", "Puebla",
+        "Querétaro", "Quintana Roo", "San Luis Potosí", "Sinaloa", "Sonora", "Tabasco", "Tamaulipas",
+        "Tlaxcala", "Veracruz", "Yucatán", "Zacatecas", "Soy extranjero"
+    ];
+
+    const alcaldiasCDMX = [
+        "Álvaro Obregón", "Azcapotzalco", "Benito Juárez", "Coyoacán", "Cuajimalpa de Morelos", 
+        "Cuauhtémoc", "Gustavo A. Madero", "Iztacalco", "Iztapalapa", "Magdalena Contreras", 
+        "Miguel Hidalgo", "Milpa Alta", "Tláhuac", "Tlalpan", "Venustiano Carranza", "Xochimilco"
+    ];
+
+    const selectEdo = document.getElementById('EstadoProcedencia');
+    const selectPais = document.getElementById('slcPais');
+    const selectAlc = document.getElementById('slcAlcaldia');
+
+    function cargarEstados() {
+        selectEdo.innerHTML = "";
+        estadosLista.forEach(edo => {
+            let opt = document.createElement('option');
+            opt.value = edo;
+            opt.text = edo;
+            if (edo === estadoGuardado) opt.selected = true;
+            selectEdo.add(opt);
+        });
+    }
+
+   
+    function gestionarPaises() {
+        const edo = selectEdo.value;
+
+        if (edo === "Soy extranjero") {
+            
+            selectPais.innerHTML = '<option value="">Cargando países...</option>';
+            
+            fetch("https://query.data.world/s/m7hmng2elmrbpffknj26ohjz2zcng3?dws=00000")
+                .then(res => res.json())
+                .then(data => {
+                    selectPais.innerHTML = '<option value="">Seleccione país...</option>';
+                    
+                    data.forEach(p => {
+                        let opt = document.createElement('option');
+                        opt.value = p.abbreviation;
+                        opt.text = p.country;
+                        
+                        
+                        if (paisGuardado && p.abbreviation === paisGuardado) {
+                            opt.selected = true;
+                        }
+                        selectPais.add(opt);
+                    });
+                })
+                .catch(err => {
+                    selectPais.innerHTML = '<option value="">Error al cargar países</option>';
+                });
+        } else if (edo === "" || edo === "Seleccione uno...") {
+            selectPais.innerHTML = '<option value="">Seleccione estado primero</option>';
+        } else {
+            
+            selectPais.innerHTML = '<option value="MX" selected>México</option>';
+        }
+    }
+
+    function gestionarAlcaldias() {
+        selectAlc.innerHTML = "";
+        const edo = selectEdo.value;
+
+        if (edo === "Ciudad de México") {
+            // Si es CDMX, permitimos elegir
+            let placeholder = document.createElement('option');
+            placeholder.value = "";
+            placeholder.text = "Seleccione alcaldía...";
+            selectAlc.add(placeholder);
+
+            alcaldiasCDMX.forEach(alc => {
+                let opt = document.createElement('option');
+                const nombreMayus = alc.toUpperCase();
+                opt.value = nombreMayus;
+                opt.text = nombreMayus;
+                
+                // Si estamos editando y coincide, lo seleccionamos
+                if (alcaldiaGuardada && nombreMayus === alcaldiaGuardada.toUpperCase()) {
+                    opt.selected = true;
+                }
+                selectAlc.add(opt);
+            });
+            selectAlc.disabled = false;
+
+        } else if (edo === "" || edo === "Seleccione uno...") {
+            // Si no ha seleccionado estado, pedimos que lo haga
+            let opt = document.createElement('option');
+            opt.value = "";
+            opt.text = "Seleccione estado primero";
+            selectAlc.add(opt);
+            selectAlc.disabled = true;
+
+        } else {
+            // Si es cualquier otro estado o Extranjero, ponemos NO APLICA
+            let opt = document.createElement('option');
+            opt.value = "NO APLICA";
+            opt.text = "NO APLICA";
+            opt.selected = true; 
+            selectAlc.add(opt);
+            selectAlc.disabled = false; // O true, según prefieras si quieres que el usuario lo vea pero no lo mueva
+        }
+    }
+
+    selectEdo.addEventListener('change', () => {
+        gestionarPaises();
+        gestionarAlcaldias();
+    });
+
+    document.addEventListener('DOMContentLoaded', () => {
+        cargarEstados();
+        
+        gestionarPaises();
+        gestionarAlcaldias();
+    });
+</script>

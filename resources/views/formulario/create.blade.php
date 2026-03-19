@@ -24,8 +24,6 @@
     </script>
 
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    
-    <script src="{{ asset('js/procedencia.js') }}?v={{ time() }}"></script>
 
     <script>
         $(document).ready(function(){

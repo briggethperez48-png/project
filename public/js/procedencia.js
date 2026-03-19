@@ -38,6 +38,7 @@
             miSelect.innerHTML+=`<option value="MX" ${selected}>Mexico</option>`
         }
     }
+
     //Estado de procedencia. Arreglo ligado al select
     const EstadoProcedencia = [
         "Seleccione uno...","Aguascalientes","Baja California","Baja California Sur",
@@ -78,6 +79,6 @@ window.addEventListener("load", function(){
         document.getElementById("EstadoProcedencia").value = estadoGuardado;
         obtenerPaises();
     }
-
 });
+
                         

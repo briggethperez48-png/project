@@ -1,6 +1,6 @@
 @extends('layouts.appA')
 
-@section('title', 'Mariposa Monarca')
+@section('title', 'Encuesta')
 
 @section('content')
    <section class="content mt-5 mb-5 ml-4 mr-4 shadow rounded">

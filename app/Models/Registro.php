@@ -18,6 +18,7 @@ class Registro extends Model
             'UnidadMedica',
             'EstadoProcedencia',
             'Pais',
+            'Alcaldia',
             'Edad',
             'Sexo',
             'Modalidad',

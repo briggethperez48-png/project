@@ -5,11 +5,11 @@
 
 @section('content')
         <!-- Cuerpo -->
-    <div class="Global mt-5 mb-5 ml-4 mr-4 shadow rounded">
+    <div class=" mt-5 mb-5 ml-4 mr-4 shadow rounded">
             <!-- Encabezado -->
         <div class="bloque" id="General">
             <div class="d-flex align-items-center justify-content-center mx-4 mt-1">
-                <img src="/project/storage/imagen/congreso-monarca.jpg" alt=""
+                <img src="/project/storage/imagen/congreso-monarca-removebg-preview.png" alt=""
                 class="img-fluid" style="max-width: 60%; height: auto;">
             </div>
                 <!-- Contenido -->
@@ -34,11 +34,11 @@
                         <div class="">
                             <h4>
                                 <i class="fa fa-globe"></i>
-                                Modalidad Virtual
+                                Modalidad Híbrida
                             </h4>
                                     <p>
-                                        <a href="">
-                                        http://eventos salud.udinx.golume
+                                        <a href="http://eventos.salud.cdmx.gob.mx/">
+                                            http://eventos.salud.cdmx.gob.mx/
                                         </a>
                                     <br>
                                         <a href="https://www.facebook.com/SSaludCdMx/">
@@ -52,14 +52,12 @@
                                 Lapso
                             </h4>
                                     <p>
-                                        24 al 28 de marzo
+                                        25 al 27 de marzo
                                     <br>
-                                        8:00 10:30 horas
                                     </p>
                         </div>
                         <div class="">
                                 <h4>Evento gratuito</h4>
-                                    <p>10 horas crédito</p>
                         </div>
                     </div>
                     <!--Columna 2-->
@@ -83,11 +81,11 @@
                                 Contactos
                             </h4>
                                 <p>
-                                    <a href="mailto:fabiola.beltran.salud.cdmx@gmail.com">
-                                    fabiola.beltran.salud.cdmx@gmail.com
+                                    <a href="mailto:voluntad.anticipada.cdmx@gmail.com">
+                                    voluntad.anticipada.cdmx@gmail.com
                                     </a>
                                 <br>
-                                    5551321250 ext. 1339, 1356 y 1424
+                                    55 5132 1250 ext. 1560 y 1307
                                 </p>
                         </div>
                     </div>

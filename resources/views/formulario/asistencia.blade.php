@@ -1,34 +1,8 @@
 @extends('layouts.appA')
 
-@section('title', 'Registro')
+@section('title', 'Asistencia')
 
 @section('content')
-    <!-- <div class="content">
-        <div class="header2">
-            <h2>
-                Registro de asistencia
-            </h2>
-        </div>
-
-    @for($dia = 1; $dia <= $diasEvento; $dia++)
-            <div class="dia-tab">
-                <h2>Día {{ $dia }}</h2>
-                @if($dia == $diaActual)
-                    <form method="POST" action="{{ route('asistencia.store') }}">
-                            @csrf
-                        <input type="hidden" name="dia" value="{{ $dia }}">
-                        
-                        <button type="submit">Confirmar asistencia</button>
-                    </form>
-
-                @elseif($dia < $diaActual)
-                    <p>Día completado</p>
-                @else
-                    <p>Aún no disponible</p>
-                @endif
-            </div>
-        @endfor
-    </div> -->
 <div class="container mt-5">
 
     <!-- Encabezado -->
