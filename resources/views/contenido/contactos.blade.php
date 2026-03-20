@@ -4,17 +4,14 @@
 @section('title', 'Contactos')
 
 @section('content')
-    <section class="mt-5 mb-5 ml-4 mr-4 shadow rounded text-justify">
+    <section class="content mt-5 mb-5 ml-4 mr-4 shadow rounded text-justify">
         <div class="m-4">
-            <div class="text-center">
+            <div class="text-center mt-3">
                 <h1>
                     Contacto
                 </h1>
             </div>
             <div class="">
-                <h2 class="text-center">
-                    Objetivo General
-                </h2>
                 <div  class="text-center">
                     <img src="/project/storage/imagen/questions.jpg" class="img-fluid" style="max-width: 60%; height: auto;">
                 </div>

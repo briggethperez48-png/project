@@ -3,6 +3,7 @@
 @section('title', 'Mariposa Monarca')
 
 @section('content')
+<section class="content">
 <div class=" Global mt-5 mb-5 ml-4 mr-4 shadow rounded">
             <!-- Encabezado -->
         <div class="bloque" id="General">
@@ -60,3 +61,4 @@
             </div>
         </div>
 </div>
+</section>

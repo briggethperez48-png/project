@@ -3,7 +3,7 @@
 @section('title', 'Aviso de Privacidad')
 
 @section('content')
-    <section class="mt-5 mb-5 ml-4 mr-4 shadow rounded text-justify">
+    <section class="content mt-5 mb-5 ml-4 mr-4 shadow rounded text-justify">
         <div class="m-4">
             <div class="text-center mb-3">
                 <h1>

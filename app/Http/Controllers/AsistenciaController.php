@@ -14,14 +14,21 @@ class AsistenciaController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
-    {
-        $inicioEvento = \Carbon\Carbon::parse('2026-03-11');
-        $diaActual = $inicioEvento->diffInDays(now()) + 1;
+    public function index() {
+        $inicioEvento = \Carbon\Carbon::parse('2026-03-18')->startOfDay();
+        $hoy = now()->startOfDay();
+        
+        // diffInDays nos dará 0 el primer día, 1 el segundo, etc.
+        $diaActual = $inicioEvento->diffInDays($hoy) + 1;
         $diasEvento = 3;
 
-        if($diaActual < 1) $diaActual = 1;
-        if($diaActual > $diasEvento) $diaActual = $diasEvento;
+        // Si es antes del evento, que sea 0 (ningún día activo)
+        if($hoy->lt($inicioEvento)) {
+            $diaActual = 0;
+        }
+
+        // ELIMINAMOS la línea que limitaba el día al máximo de días del evento
+        // para que si diaActual es 4, 5 o 100, la vista sepa que ya pasó.
 
         return view('formulario.asistencia', [
             'diasEvento' => $diasEvento,
@@ -47,11 +54,11 @@ class AsistenciaController extends Controller
      */
     public function store(Request $request)
     {
-        $inicioEvento = Carbon::parse('2026-03-11');
+        $inicioEvento = Carbon::parse('2026-03-18')->startOfDay();
+        $diasEvento = 3;
+        $diaActual = $inicioEvento->diffInDays(now()->startOfDay()) + 1;
 
-        $diaActual = \Carbon\Carbon::parse($inicioEvento)->diffInDays(now()) + 1;
-
-        if($request->dia != $diaActual){
+        if($request->dia != $diaActual || $diaActual > $diasEvento || $diaActual < 1){
             return redirect('/content/objetivos')->with('error','No puedes registrar asistencia en este día');
         }
 

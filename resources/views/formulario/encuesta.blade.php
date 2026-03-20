@@ -134,16 +134,35 @@
                     <br> 10 = Lo recomendaría ampliamente</p>
                 
             </p>
-            <P>
-                <span class="d-flex">
-                    0 <input type="range" id="escala" 
-                        name="escala" min="0" max="10" 
-                        step="0.5" value="0" class="mb-2 mx-3"> 
-                    10
-                </span>
-            </P>
+            <div class="range-container">
+                    <div class="d-flex justify-content-between mb-1 font-weight-bold">
+                        <span>0</span>
+                        <span>10</span>
+                    </div>
+                    
+                    <input type="range" id="escala" name="escala" 
+                        min="0" max="10" step="0.5" value="0" 
+                        class="custom-range" list="tickmarks">
+                    
+                    <datalist id="tickmarks" class="d-flex justify-content-between mt-1 px-1 mb-3">
+                        <option value="0" label="0"></option>
+                        <option value="1" label="1"></option>
+                        <option value="2" label="2"></option>
+                        <option value="3" label="3"></option>
+                        <option value="4" label="4"></option>
+                        <option value="5" label="5"></option>
+                        <option value="6" label="6"></option>
+                        <option value="7" label="7"></option>
+                        <option value="8" label="8"></option>
+                        <option value="9" label="9"></option>
+                        <option value="10" label="10"></option>
+                    </datalist>
+                </div>
             </div>
 
-            <button type="submit">Enviar</button>
+            <div>
+                <button type="submit" 
+                    class="btn btn-success mb-4 mt-3 px-4 py-2 shadow-sm rounded border-0">Enviar</button>
+            </div>
         </form>
     </section>

@@ -3,6 +3,7 @@
 @section('title', 'Términos y Condiciones')
 
 @section('content')
+<section class="content">
     <section class="mt-5 mb-5 ml-4 mr-4 shadow rounded text-justify">
         <div class="m-4">
             <div class="text-center">
@@ -23,3 +24,4 @@
                 </div>
         </div>
     </section>
+</section>

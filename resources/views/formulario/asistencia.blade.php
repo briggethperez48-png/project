@@ -3,11 +3,11 @@
 @section('title', 'Asistencia')
 
 @section('content')
-<div class="container mt-5">
+<section class="content mt-4">
 
     <!-- Encabezado -->
-    <div class="text-center mb-4">
-        <h1 class="font-weight-bold">Registro de asistencia</h1>
+    <div class="text-center mt-5 mb-4">
+        <h1 class=" font-weight-bold">Registro de asistencia</h1>
         <p class="text-muted">Confirma tu asistencia</p>
     </div>
 
@@ -68,4 +68,4 @@
         </div>
     </div>
 
-</div>
+</section>

@@ -5,12 +5,28 @@
 
 @section('content')
         <!-- Cuerpo -->
+<section class="content">
     <div class=" mt-5 mb-5 ml-4 mr-4 shadow rounded">
             <!-- Encabezado -->
         <div class="bloque" id="General">
-            <div class="d-flex align-items-center justify-content-center mx-4 mt-1">
+            <div class="EncaImg d-flex align-items-center justify-content-center mx-4 mt-1">
                 <img src="/project/storage/imagen/congreso-monarca-removebg-preview.png" alt=""
                 class="img-fluid" style="max-width: 60%; height: auto;">
+            </div>
+            <!-- Encabezado para celular -->
+            <div class="Enca ml-3 text-left">
+                <h1>
+                    Congreso Institucional e Interinstitucional
+                </h1>
+                <h2>
+                    TRASCENDER EN PAZ:
+                </h2>
+                <h3>
+                    LA RUTA MUNARCA DE LA VOLUNTAD ANTICIPADA
+                </h3>
+                <div class="text-center">
+                    <img src="/project/storage/imagen/monarcaF.png  " alt="" class="img-fluid" style="max-width: 30%; height: auto;">
+                </div>
             </div>
                 <!-- Contenido -->
             <div class="mt-2">
@@ -122,3 +138,4 @@
             </div>
         </div>
     </div>
+</section>

@@ -24,6 +24,13 @@
     font-weight: 800;
     margin-top: 20px;
 }
+.content .Enca{
+    position: absolute;
+    opacity: 0;
+}
+.content .EncaImg img{
+        opacity: 1;
+    }
 .content h2{
     justify-self: center;
     color: #9d2148;
@@ -98,44 +105,10 @@ input[type="radio"]:hover {
     margin: 10px 50px;
     color: #fff;
 }
-.content .btn .submit{
-    padding: 15px 40px;
-    background-color: #9d2148;
-    border-radius: 10px;
-    box-shadow: 0px 0px 10px rgba(88,89,90, 0.5);
-}
-.content .btn .button{
-    padding: 15px 40px;
-    background-color: #b28e5c;
-    border-radius: 10px;
-    box-shadow: 0px 0px 10px rgba(88,89,90, 0.5);
-}
 .content .btn .submit:hover,
 .content .btn .button{
     box-shadow: 0px 0px 15px rgba(88,89,90, 0.8);
-}
-.content .btn a{
-    margin: 0;
-    justify-self: center;
-}
-.content button{
-    padding: 15px 40px;
-    background-color: #b28e5c;
-    border-radius: 10px;
-    box-shadow: 0px 0px 10px rgba(88,89,90, 0.5);
-
-    font-size: 20px;
-    font-weight: 600;
-    color: #fff;
-
-    margin: 10px 20px;
-}
-.content textarea{
-    margin-bottom: 10px;
-    border-radius: 8px;
-    width: 100%;
-    box-sizing: border-box;
-}
+} 
 .content .text p{
     text-align: justify;
     margin: 25px 20px 0 20px;
@@ -159,4 +132,93 @@ input[type="radio"]:hover {
     background-color: #55585a;
     border-radius: 15px;
     box-shadow: 0px 0px 10px rgba(88,89,90, 0.5);
+}
+
+.range-container {
+        position: relative;
+        width: 100%;
+        padding: 0 10px;
+    }
+
+    /* Estilo para la barra */
+    #escala {
+        width: 100%;
+        cursor: pointer;
+    }
+
+    /* Estilo para los números del datalist */
+    #tickmarks {
+        display: flex;
+        justify-content: space-between;
+        width: 100%;
+        padding: 0;
+        margin-top: 5px;
+    }
+
+    #tickmarks option {
+        padding: 0;
+        font-size: 12px;
+        color: #666;
+        /* Esto ayuda a centrar los números bajo las marcas */
+        width: 20px;
+        text-align: center;
+    }
+.radio-input {
+        flex-shrink: 0 !important;
+        width: 1.2rem;  
+        height: 1.2rem; 
+        cursor: pointer;
+    }
+
+@media only screen and (max-width: 480px) {
+    .content{
+        overflow-x: hidden;
+        margin-top: 70px;
+    }
+    .content ul{
+        margin-left:-50px;
+    }
+    .content .pregunta{
+        justify-items: center;
+        display: grid;
+    }
+    .content .Enca{
+    position: static;
+    opacity: 1;
+    }
+    .content .EncaImg{
+        position: absolute;
+        opacity: 0;
+    }
+        .Global {
+            padding: 10px !important;
+        }
+        .botones-container {
+            flex-direction: column-reverse !important;
+            margin-left: 0 !important;
+            margin-right: 0 !important;
+        }
+        
+        .botones-container a, 
+        .botones-container button {
+            width: 100% !important;
+            margin: 10px 0 !important;
+            padding: 12px 0 !important;
+        }
+        .pregunta h3 {
+            font-size: 1.2rem;
+        }
+        .radio-card-group {
+            padding: 15px !important;
+            margin-bottom: 20px;
+        }
+        .d-flex.align-items-center {
+            align-items: flex-start !important; 
+        }
+        .radio-input {
+            margin-top: 5px; 
+        }
+        #tickmarks option {
+            font-size: 10px;
+        }
 }

@@ -135,8 +135,7 @@
         .ponentes{
             display: flex;
             flex-flow: column; 
-            flex-wrap: wrap;
-            row-gap: 20px;
+            justify-self: center;
         }
         .ponentes img,
         .ponentes button,
@@ -150,5 +149,13 @@
         .ponentes .popOpen .popOut,
         .ponentes .ponenteA .popOpen img{
             width: 90%;
+        }
+    }
+
+    @media only screen and (max-width: 480px){
+        .ponentes{
+        display: flex;
+        flex-flow: column; 
+        justify-self: center;
         }
     }
